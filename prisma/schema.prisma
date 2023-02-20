@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator nexusPrisma {
+   provider = "nexus-prisma"
+}
+
+/// This is a user!
+model User {
+  /// This is an id!
+  id  String  @id
+}
+
+// This is a Theater
+model Theater {
+  // This in an auto generated id!
+  id String @id @default(uuid())
+  // This is the Theater name
+  name String @unique
+  // This is the Theater Country
+  country String
+  // This is the Theater address
+  address_street String
+  // This is the Theater adress number
+  address_number String
+  // This is the Theater opening date
+  opening_date DateTime?
+  // This is the Theater capacity
+  capacity Int?
+  // This is the theater history
+  history String?
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
