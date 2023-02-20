@@ -1,16 +1,23 @@
-import { intArg, mutationField, stringArg } from "nexus";
+import { mutationField, stringArg } from "nexus";
 import { UserType } from "./schema";
 
 export const UserMutation = mutationField("createUser", {
   type: UserType,
   args: {
-    id: stringArg(),
+    name: stringArg(),
+    email: stringArg(),
+    password: stringArg(),
   },
-  resolve(_root, args, ctx) {
-    return ctx.prisma.user.create({
+  resolve: async (_, { name, email, password }, ctx) => {
+    const hashedPassword = await ctx.hashProvider.generateHash(password);
+    const user = await ctx.prisma.user.create({
       data: {
-        id: args.id,
+        name,
+        email,
+        password: hashedPassword,
       },
     });
-  },
+
+    return user;
+  }
 });

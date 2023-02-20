@@ -2,18 +2,20 @@ import { PrismaClient } from '@prisma/client';
 import express, { Request, Response } from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import { $settings } from 'nexus-prisma';
+import { BcryptHashProvider } from 'providers/HashProvider/BcryptHashProvider';
 import { schema } from './schema';
 
 const app = express();
 
 const prisma = new PrismaClient();
+const hashProvider = new BcryptHashProvider();
 
 app.use(express.json());
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   graphiql: true,
-  context: { prisma },
+  context: { prisma, hashProvider },
 }));
 
 $settings({

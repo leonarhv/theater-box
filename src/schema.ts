@@ -1,4 +1,4 @@
-import { makeSchema } from 'nexus';
+import { makeSchema, scalarType } from 'nexus';
 import * as theaterTypes from './Theater';
 import * as userTypes from './User';
 

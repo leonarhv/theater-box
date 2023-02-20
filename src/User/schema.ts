@@ -6,5 +6,7 @@ export const UserType = objectType({
   description: User.$description,
   definition(t) {
     t.field(User.id)
+    t.field(User.name)
+    t.field(User.email)
   }
 })

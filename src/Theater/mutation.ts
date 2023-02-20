@@ -10,6 +10,7 @@ export const TheaterMutation = mutationField("createTheater", {
     country: stringArg(),
     capacity: intArg(),
     history: stringArg(),
+    opening_date: stringArg(),
   },
   resolve(_root, args, ctx) {
     return ctx.prisma.theater.create({
@@ -20,6 +21,7 @@ export const TheaterMutation = mutationField("createTheater", {
         country: args.country,
         capacity: args.capacity,
         history: args.history,
+        opening_date: args.opening_date ? new Date(args.opening_date) : null,
       },
     });
   },

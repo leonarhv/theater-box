@@ -11,8 +11,14 @@ generator nexusPrisma {
 
 /// This is a user!
 model User {
-  /// This is an id!
-  id  String  @id
+  // This is the user auto generated id!
+  id  String  @id @default(uuid())
+  // This is the user name
+  name  String
+  // This is the user email
+  email  String  @unique
+  // This is the user password
+  password  String
 }
 
 // This is a Theater
