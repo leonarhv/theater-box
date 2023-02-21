@@ -19,6 +19,8 @@ model User {
   email  String  @unique
   // This is the user password
   password  String
+  /// Auth role that could be either admin or user
+  role  String  @default("user")
 }
 
 // This is a Theater

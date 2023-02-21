@@ -21,3 +21,23 @@ export const UserMutation = mutationField("createUser", {
     return user;
   }
 });
+
+export const UpdateUserRoleMutation = mutationField("updateUserRole", {
+  type: UserType,
+  args: {
+    id: stringArg(),
+    role: stringArg(),
+  },
+  resolve: async (_, { id, role }, ctx) => {
+    const user = await ctx.prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        role,
+      },
+    });
+
+    return user;
+  }
+});

@@ -8,5 +8,6 @@ export const UserType = objectType({
     t.field(User.id)
     t.field(User.name)
     t.field(User.email)
+    t.field(User.role)
   }
 })
