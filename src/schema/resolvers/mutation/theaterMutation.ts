@@ -1,5 +1,5 @@
-import { intArg, mutationField, mutationType, stringArg } from "nexus";
-import { TheaterType } from "./schema";
+import { intArg, mutationField, stringArg } from "nexus";
+import { TheaterType } from "../../models/theaterType";
 
 export const TheaterMutation = mutationField("createTheater", {
   type: TheaterType,

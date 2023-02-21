@@ -1,5 +1,5 @@
 import { list, queryField } from "nexus";
-import { UserType } from "./schema";
+import { UserType } from "../../models/userType";
 
 export const UserQuery = queryField('users', {
   type: list(UserType),

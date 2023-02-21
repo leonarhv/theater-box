@@ -1,5 +1,5 @@
 import { mutationField, stringArg } from "nexus";
-import { UserType } from "./schema";
+import { UserType } from "../../models/userType";
 
 export const UserMutation = mutationField("createUser", {
   type: UserType,

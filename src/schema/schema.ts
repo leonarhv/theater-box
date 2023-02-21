@@ -1,9 +1,9 @@
 import { makeSchema, scalarType } from 'nexus';
-import * as theaterTypes from './Theater';
-import * as userTypes from './User';
+import * as types from './models';
+import * as resolvers from './resolvers';
 
 export const schema = makeSchema({
-  types: [theaterTypes, userTypes],
+  types: [types, resolvers],
   outputs: {
     schema: __dirname + '/schema.graphql',
     typegen: __dirname + '/generated/nexus.ts',

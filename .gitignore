@@ -1,6 +1,6 @@
 node_modules/
 bin/
 yarn-error.log
-*/generated/
-*/schema.graphql
+src/schema/generated/
+src/schema/schema.graphql
 .env

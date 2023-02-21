@@ -5,7 +5,7 @@ import express, { Request, Response } from "express";
 import { graphqlHTTP } from "express-graphql";
 import { $settings } from "nexus-prisma";
 import { BcryptHashProvider } from "providers/HashProvider/BcryptHashProvider";
-import { schema } from "./schema";
+import { schema } from "./schema/schema";
 import jwt from "jsonwebtoken";
 import { expressjwt, Request as AuthRequest } from "express-jwt";
 import { secret } from './constants';

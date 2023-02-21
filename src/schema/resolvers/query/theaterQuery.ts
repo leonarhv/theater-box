@@ -1,5 +1,5 @@
 import { list, queryField } from "nexus";
-import { TheaterType } from "./schema";
+import { TheaterType } from "../../models/theaterType";
 
 export const TheaterQuery = queryField('theaters', {
   type: list(TheaterType),
