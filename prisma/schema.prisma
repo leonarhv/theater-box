@@ -6,41 +6,63 @@ generator client {
 }
 
 generator nexusPrisma {
-   provider = "nexus-prisma"
+  provider = "nexus-prisma"
 }
 
 /// This is a user!
 model User {
   // This is the user auto generated id!
-  id  String  @id @default(uuid())
+  id       String @id @default(uuid())
   // This is the user name
-  name  String
+  name     String
   // This is the user email
-  email  String  @unique
+  email    String @unique
   // This is the user password
-  password  String
+  password String
   /// Auth role that could be either admin or user
-  role  String  @default("user")
+  role     String @default("user")
 }
 
 // This is a Theater
 model Theater {
   // This in an auto generated id!
-  id String @id @default(uuid())
+  id             String    @id @default(uuid())
   // This is the Theater name
-  name String @unique
+  name           String    @unique
   // This is the Theater Country
-  country String
+  country        String
   // This is the Theater address
   address_street String
   // This is the Theater adress number
   address_number String
   // This is the Theater opening date
-  opening_date DateTime?
+  opening_date   DateTime?
   // This is the Theater capacity
-  capacity Int?
+  capacity       Int?
   // This is the theater history
-  history String?
+  history        String?
+}
+
+/// This a a character from a play
+model Character {
+  // Id
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  Show        Show?   @relation(fields: [showId], references: [id])
+  showId      String?
+}
+
+/// Entity that defined a play
+model Show {
+  // Id
+  id          String      @id @default(uuid())
+  // Name of the show
+  name        String      @unique
+  // Description of the show
+  description String?
+  // Characters of the show
+  characters  Character[]
 }
 
 datasource db {

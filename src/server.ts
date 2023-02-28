@@ -35,9 +35,9 @@ app.use(
   }))
 );
 
-$settings({
-  prismaClientContextField: "db",
-});
+// $settings({
+//   prismaClientContextField: "db",
+// });
 
 app.get("/", (request: Request, response: Response) => {
   return response.json({ message: "Hello World" });
