@@ -6,3 +6,7 @@ export * from './mutation/userMutation';
 export * from './mutation/theaterMutation';
 export * from './mutation/showMutation';
 export * from './mutation/characterMutation';
+export * from './mutation/actorMutation';
+export * from './mutation/roleMutation';
+export * from './mutation/showRunMutation';
+export * from './mutation/productionMutation';

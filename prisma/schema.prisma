@@ -26,9 +26,9 @@ model User {
 // This is a Theater
 model Theater {
   // This in an auto generated id!
-  id             String    @id @default(uuid())
+  id             String       @id @default(uuid())
   // This is the Theater name
-  name           String    @unique
+  name           String       @unique
   // This is the Theater Country
   country        String
   // This is the Theater address
@@ -41,6 +41,8 @@ model Theater {
   capacity       Int?
   // This is the theater history
   history        String?
+  /// Productions that took place in the theater
+  Productions     Production[]
 }
 
 /// This a a character from a play
@@ -51,18 +53,82 @@ model Character {
   description String?
   Show        Show?   @relation(fields: [showId], references: [id])
   showId      String?
+  roles       Role[]
 }
 
 /// Entity that defined a play
 model Show {
   // Id
-  id          String      @id @default(uuid())
+  id          String       @id @default(uuid())
   // Name of the show
-  name        String      @unique
+  name        String       @unique
   // Description of the show
   description String?
   // Characters of the show
   characters  Character[]
+  /// Productions of the show
+  productions Production[]
+}
+
+/// A person that can play a character in a show
+model Actor {
+  /// Id of the actor
+  id    String @id @default(uuid())
+  /// Name of the actor
+  name  String
+  /// The roles that the actor played
+  roles Role[]
+}
+
+/// A role is a character played by an actor in a show
+model Role {
+  /// Id of the role
+  id          String     @id @default(uuid())
+  /// The actor that played the role
+  Actor       Actor?     @relation(fields: [actorId], references: [id])
+  /// The actor id
+  actorId     String?
+  /// The character that was played
+  Character   Character? @relation(fields: [characterId], references: [id])
+  /// The character id
+  characterId String?
+  /// The show run that the role was played
+  ShowRun     Show_Run?  @relation(fields: [showRunId], references: [id])
+  /// The show run id
+  showRunId   String?
+}
+
+/// A show run is a season of a show
+model Show_Run {
+  /// Id of the show run
+  id           String      @id @default(uuid())
+  /// The Start date of the show run
+  start_date   DateTime?
+  /// The end date of the show run
+  end_date     DateTime?
+  /// The cast on the show run
+  cast         Role[]
+  Production   Production? @relation(fields: [productionId], references: [id])
+  productionId String?
+}
+
+model Production {
+  /// Id of the production
+  id         String     @id @default(uuid())
+  /// Start date of the production
+  start_date DateTime?
+  /// End Date of the production
+  end_date   DateTime?
+  /// The Theater that featured the show
+  Theater    Theater    @relation(fields: [theaterId], references: [id])
+  /// The theater id
+  theaterId  String
+  /// The show runs of the production
+  ShowRuns   Show_Run[]
+  /// The show that was featured
+  Show       Show       @relation(fields: [showId], references: [id])
+  /// The show id
+  showId     String
 }
 
 datasource db {

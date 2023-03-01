@@ -12,5 +12,6 @@ export const TheaterType = objectType({
     t.field(Theater.capacity);
     t.field(Theater.history);
     t.field(Theater.id);
+    t.field(Theater.Productions);
   }
 })

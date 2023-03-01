@@ -9,5 +9,6 @@ export const ShowType = objectType({
     t.field(Show.name);
     t.field(Show.description);
     t.field(Show.characters);
+    t.field(Show.productions);
   }
 })
